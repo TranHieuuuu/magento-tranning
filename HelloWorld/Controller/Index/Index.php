@@ -19,4 +19,9 @@ class Index extends \Magento\Framework\App\Action\Action
         $resultPage = $this->resultPageFactory->create();
         return $resultPage;
     }
+
+    protected function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Magento_HelloWorld::index');
+    }
     }

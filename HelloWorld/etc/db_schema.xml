@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="magenest_movie" resource="default" engine="innodb" comment="Catalog Product Table">
+        <column xsi:type="int" name="movie_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" length="10" nullable="false"
+                comment="Attribute Set ID"/>
+        <column xsi:type="varchar" name="description" nullable="false" length="32" default="simple" comment="Type ID"/>
+        <column xsi:type="int" name="rating" nullable="true" padding="20" comment="SKU"/>
+        <column xsi:type="int" name="director_id" padding="6" unsigned="false" nullable="false" identity="false"
+                default="0" comment="Has Options"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="movie_id"/>
+        </constraint>
+        <index referenceId="CATALOG_PRODUCT_ENTITY_ATTRIBUTE_SET_ID" indexType="btree">
+            <column name="director_id"/>
+        </index>
+    </table>
+
+    <table name="magenest_director" resource="default" engine="innodb" comment="Catalog Product Table">
+        <column xsi:type="int" name="director_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" length="10" nullable="false"
+                comment="Attribute Set ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="director_id"/>
+        </constraint>
+    </table>
+
+    <table name="magenest_actor" resource="default" engine="innodb" comment="Catalog Product Table">
+        <column xsi:type="int" name="actor_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="name" padding="10" nullable="false" unsigned="true"
+                comment="Attribute Set ID"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="actor_id"/>
+        </constraint>
+    </table>
+
+    <table name="magenest_movie_actor" resource="default" engine="innodb" comment="Catalog Product Table">
+        <column xsi:type="int" name="movie_id" padding="10" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="int" name="actor_id" padding="10" unsigned="true" nullable="false"
+                comment="Attribute Set ID"/>
+        <index referenceId="CATALOG_PRODUCT_MOVIE_SET_ID" indexType="btree">
+            <column name="movie_id"/>
+        </index>
+        <index referenceId="CATALOG_PRODUCT_ACTOR_SET_ID" indexType="btree">
+            <column name="actor_id"/>
+        </index>
+    </table>
+
+</schema>

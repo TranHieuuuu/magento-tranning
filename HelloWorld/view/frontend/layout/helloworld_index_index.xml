@@ -11,5 +11,7 @@
             <block class="Magenest\HelloWorld\Block\Landingspage"
                    name="landingsblock" template="Magenest_HelloWorld::landingspage.phtml" />
         </referenceContainer>
+        <block class="Magenest\HelloWorld\Block\Newproducts" name="new_products"
+               template="Magenest_HelloWorld::newproducts.phtml"/>
     </body>
 </page>
